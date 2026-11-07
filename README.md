@@ -43,3 +43,6 @@ Add an entry to `js/data.js` (`id`, `type`, `emoji`, `district`, `name`, `zh`, `
 - The living island is a stylised layout, not to scale: the real atolls are far too spread out and too small to draw faithfully.
 - Map tiles come from OpenStreetMap's public tile server (no key needed). That server is meant for light use. For heavy traffic, switch `js/app.js` to a tile provider you have an account with.
 - Map data © OpenStreetMap contributors.
+
+## Teleport
+The living island shares a small `island/teleport.js` with the Xi'an and Vancouver maps: a toolbar button and an in-world portal on the airport island open a city picker, with a swirl transition and an arrival toast. Debug: `?portal=1` (frame the portal), `?portal=open` (open the picker).

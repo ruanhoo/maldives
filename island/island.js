@@ -267,6 +267,20 @@
   mosques.forEach((m) => spush(m.y, () => drawMosque(m)));
   villas.forEach((v) => spush(v.y, () => drawVilla(v)));
   umbrellas.forEach((u) => spush(u.y, () => drawUmbrella(u)));
+  // teleport portal, on the airport island in the clearest spot
+  const PORTAL = (() => {
+    const a = bById.get('velana') || lands[0]; let best = [a.x, a.y]; let bd = -1;
+    const obs = [];
+    if (a.tx !== undefined) obs.push([a.tx, a.ty - 14, 84], [a.tw[0], a.tw[1] - 14, 44], [a.x - a.rx * 0.55, a.y - a.ry * 0.12, 62], [a.x + a.rx * 0.68, a.y - a.ry * 0.1, 56]);
+    [palms, houses, mosques, villas, umbrellas].forEach((L) => L.forEach((o) => { if (Math.abs(o.x - a.x) < a.rx + 40 && Math.abs(o.y - a.y) < a.ry + 40) obs.push([o.x, o.y, 14]); }));
+    for (let x = a.x - a.rx * 0.8; x <= a.x + a.rx * 0.8; x += 6) for (let y = a.y - a.ry * 0.3; y <= a.y + a.ry * 0.6; y += 5) {
+      if (((x - a.x) / (a.rx * 0.88)) ** 2 + ((y - a.y) / (a.ry * 0.6)) ** 2 > 1) continue;
+      const d = Math.min(...obs.map((o) => Math.hypot(o[0] - x, (o[1] - y) * 1.3) - o[2]));
+      if (d > bd) { bd = d; best = [x, y]; }
+    }
+    return { x: best[0], y: best[1] };
+  })();
+  if (window.TELE) spush(PORTAL.y, () => window.TELE.draw(g, sx(PORTAL.x), sy(PORTAL.y), cam.z, time, env.n));
   // reef corals near Banana Reef
   const coralSpots = [];
   (() => { const b = bById.get('bananareef'); if (!b) return; for (let i = 0; i < 7; i++) coralSpots.push({ x: b.x + (rnd() - 0.5) * 100, y: b.y + (rnd() - 0.5) * 36, c: ['#ff7aa2', '#ffb347', '#b48ad8', '#ff6b5b'][i % 4], s: 0.8 + rnd() * 0.5 }); })();
@@ -1080,6 +1094,10 @@
         pill(text, X, Y, { size, bg: mix(DCOL[key], '#ffffff', 0.72) }); taken.push(pillRect(text, X, Y, size));
       });
     }
+    if (labelsOn && window.TELE && cam.z > 0.2 && cam.z < 1.6) {
+      const X = sx(PORTAL.x); const Y = sy(PORTAL.y, 92 + 14 / cam.z); const text = '🌀 ' + window.TELE.portalLabel();
+      if (onScreen(X, Y, 80)) { const r = pillRect(text, X, Y, 12); if (free(r)) { pill(text, X, Y, { size: 12, bg: '#e9e3ff' }); taken.push(r); } }
+    }
     const pri = { hotel: 0, island: 1, sea: 2, go: 3 };
     const list = [...places].sort((a, b) => (selId === b.id) - (selId === a.id) || (hoverB === b) - (hoverB === a) || pri[a.p.type] - pri[b.p.type] || a.y - b.y);
     for (const b of list) {
@@ -1218,8 +1236,10 @@
     if (!best) creatures.forEach((c) => { if (c.pid && c.hr) test(c, 0, c.hr * c.sz); });
     return best;
   }
-  function hover(x, y) { const m = hitMover(x, y); const b = m ? null : hitPlace(x, y); hoverB = b; cv.style.cursor = m || b ? 'pointer' : ''; }
+  const hitPortal = (x, y) => !!window.TELE && window.TELE.hit(x, y, sx(PORTAL.x), sy(PORTAL.y), cam.z);
+  function hover(x, y) { if (hitPortal(x, y)) { hoverB = null; cv.style.cursor = 'pointer'; return; } const m = hitMover(x, y); const b = m ? null : hitPlace(x, y); hoverB = b; cv.style.cursor = m || b ? 'pointer' : ''; }
   function clickAt(x, y) {
+    if (hitPortal(x, y)) { window.TELE.open(); return; }
     const m = hitMover(x, y);
     if (m) { if (m.kind === 'guest' || m.kind === 'buggy') startFollow(m); else selectPlace(bById.get(m.pid)); return; }
     const b = hitPlace(x, y);
@@ -1400,6 +1420,7 @@
     $('bHelp').setAttribute('aria-label', tx('help'));
     $('factTx').textContent = tx('facts')[factIdx];
     syncPause();
+    if (window.TELE) window.TELE.refresh();
   }
   function setLang(next) {
     if (!LANGS.includes(next) || next === lang) return;
@@ -1424,6 +1445,8 @@
   if (qs.get('view') === 'world') { fitAll(); cam.x = cam.tx; cam.y = cam.ty; cam.z = cam.tz; }
   if (qs.get('panel') && PANELS[qs.get('panel')]) openPanel(qs.get('panel'));
   if (qs.get('sel') && bById.has(qs.get('sel'))) selectPlace(bById.get(qs.get('sel')));
+  if (window.TELE) window.TELE.init({ here: 'maldives', getLang: () => lang });
+  { const pq = qs.get('portal'); if (pq) { Object.assign(cam, { x: PORTAL.x, y: PORTAL.y - 20, z: 1.1, tx: PORTAL.x, ty: PORTAL.y - 20, tz: 1.1 }); if (pq === 'open') window.TELE.open(); } }
   requestAnimationFrame(frame);
 
   // small hook for debugging/tests
