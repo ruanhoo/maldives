@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <title>Maldives Island · a living cartoon world of hotels, buggies &amp; sea life</title>
+  <meta name="description" content="Wander a tiny cartoon Maldives: resort islands, buggies, seaplanes and little guests, with manta rays, whale sharks, turtles and dolphins swimming in the sea.">
+  <meta name="theme-color" content="#1f9fc7">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%9D%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="island.css">
+</head>
+<body>
+  <canvas id="cv" role="img" data-i18n-aria="canvasAria" aria-label="Interactive illustrated map of the Maldives with resort islands, buggies and sea life"></canvas>
+
+  <div id="logo" class="ui glass">
+    <div class="big">MALDIVES<br>ISLAND</div>
+    <div class="sub"><b data-i18n="logoTag">Living islands</b><span data-i18n="logoSub">Hotels + Sea life</span></div>
+  </div>
+
+  <div id="tod" class="ui glass" role="group" aria-label="Time of day"></div>
+
+  <div id="tools" class="ui glass" role="toolbar">
+    <button class="tb on" id="bLabel" aria-pressed="true"><span class="i">🏷️</span><span data-tool="labels">Labels</span></button>
+    <button class="tb" id="bRide" aria-pressed="false"><span class="i">🛺</span><span data-tool="ride">Buggy</span></button>
+    <button class="tb" id="bFollow" aria-pressed="false"><span class="i">🧍</span><span data-tool="follow">Guest</span></button>
+    <button class="tb" id="bDive" aria-pressed="false"><span class="i">🐠</span><span data-tool="dive">Sea life</span></button>
+    <button class="tb" id="bPause" aria-pressed="false"><span class="i" id="pauseIcon">⏸</span><span id="pauseTx" data-tool="pause">Pause</span></button>
+    <button class="tb" id="bBird" aria-pressed="false"><span class="i">🛰️</span><span data-tool="bird">Bird's-eye</span></button>
+    <button class="tb" id="bLog" aria-pressed="false"><span class="i">📒</span><span data-tool="log">Journal</span></button>
+  </div>
+
+  <div id="right" class="ui">
+    <div class="lang" role="group" data-i18n-aria="langAria" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="zh" aria-pressed="false">中文</button>
+    </div>
+    <button class="tb" id="bAll" data-i18n="overview">↗ Overview</button>
+    <button class="tb" id="bList" data-i18n="list" aria-expanded="false">☰ List</button>
+    <button class="tb" id="bHelp" aria-label="Help">?</button>
+    <a class="tb" id="bClassic" href="../index.html" data-i18n="classic">🗺️ Classic map</a>
+  </div>
+
+  <div id="follow" class="ui glass" aria-live="polite"></div>
+
+  <div id="fact" class="ui glass" role="button" tabindex="0"><b data-i18n="factTitle">🐚 Reef fact</b><span id="factTx"></span></div>
+
+  <aside id="drawer" class="ui glass" aria-label="Places">
+    <input id="q" type="search" data-i18n-ph="search" placeholder="🔍 Search places, notes…" autocomplete="off">
+    <div id="cats"></div>
+    <div id="list"></div>
+  </aside>
+
+  <aside id="log" class="ui glass"><h5 data-i18n="logTitle">Island journal</h5><div id="logs" aria-live="off"></div></aside>
+
+  <section id="card" class="ui glass" aria-live="polite"></section>
+
+  <div id="intro" class="ui" role="dialog" aria-modal="true" aria-labelledby="iti">
+    <div class="box glass">
+      <div class="st" id="ist"></div><h2 id="iti"></h2><p id="itx"></p>
+      <div class="row"><div class="dots" id="idt"></div><div><button class="btn" id="iskip" type="button"></button> <button class="btn pri" id="inext" type="button"></button></div></div>
+    </div>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="strings.js"></script>
+  <script src="island.js"></script>
+</body>
+</html>

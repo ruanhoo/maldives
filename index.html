@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hello Maldives! A cartoon guide to islands, hotels &amp; sea life</title>
+  <meta name="description" content="A cartoon-style travel guide to the Maldives: resort hotels, local islands, manta rays, whale sharks and how to get around, on an interactive map plus a living island you can explore.">
+  <meta name="theme-color" content="#2ec4c6">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%9D%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/leaflet.css">
+  <link rel="stylesheet" href="vendor/MarkerCluster.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#explore" data-i18n="skip">Skip to the map</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" data-i18n-aria="brandAria" aria-label="Hello Maldives home">
+      <span class="brand__icon" aria-hidden="true">🏝️</span>
+      <span class="brand__text" data-i18n="brand">Hello Maldives!</span>
+    </a>
+    <div class="header__right">
+      <nav class="nav" aria-label="Main">
+        <a href="#explore" data-i18n="navMap">Map</a>
+        <a href="#tips" data-i18n="navTips">Tips</a>
+        <a href="island/index.html" data-i18n="navIsland">Living island</a>
+      </nav>
+      <div class="lang" role="group" data-i18n-aria="langAria" aria-label="Language">
+        <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="zh" lang="zh" aria-pressed="false">中文</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__copy">
+        <p class="sticker" data-i18n="sticker">ދިވެހިރާއްޖެ · Maldives</p>
+        <h1 data-i18n-html="heroTitleHtml">Welcome to the <span class="hl">Maldives!</span></h1>
+        <p class="hero__lead" data-i18n="heroLead">Swim with manta rays, sleep on stilts over a turquoise lagoon and zip around on a beach buggy. Your cartoon guide to 1,000-odd coral islands.</p>
+        <div class="hero__btns">
+          <a class="btn" href="#explore" data-i18n="openMap">🗺️ Open the map</a>
+          <a class="btn btn--alt" href="island/index.html" data-i18n="openIsland">🏝️ Visit the living island</a>
+        </div>
+      </div>
+
+      <div class="hero__art" aria-hidden="true">
+        <svg viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg" focusable="false">
+          <defs>
+            <g id="palm" stroke="#2d2a32" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M0 0 Q14 -46 4 -92" fill="none" stroke-width="9"/>
+              <path d="M0 0 Q14 -46 4 -92" fill="none" stroke="#a9744a" stroke-width="4"/>
+              <path d="M4 -92 Q-22 -118 -54 -96 Q-24 -104 4 -92 Z" fill="#3fb68b"/>
+              <path d="M4 -92 Q30 -122 62 -100 Q32 -104 4 -92 Z" fill="#3fb68b"/>
+              <path d="M4 -92 Q-14 -130 -40 -138 Q-10 -122 4 -92 Z" fill="#6fdcae"/>
+              <path d="M4 -92 Q22 -134 52 -138 Q20 -122 4 -92 Z" fill="#6fdcae"/>
+              <path d="M4 -92 Q-8 -76 -38 -72 Q-8 -88 4 -92 Z" fill="#3fb68b"/>
+              <circle cx="2" cy="-90" r="5" fill="#8a5a3c"/>
+              <circle cx="10" cy="-86" r="4.5" fill="#8a5a3c"/>
+            </g>
+          </defs>
+          <g stroke="#2d2a32" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+            <rect x="0" y="0" width="600" height="420" fill="#bfe8fb" stroke="none"/>
+
+            <!-- sun -->
+            <g class="sun">
+              <circle cx="500" cy="82" r="62" fill="none" stroke="#ffc93c" stroke-width="10" stroke-dasharray="4 20"/>
+              <circle cx="500" cy="82" r="40" fill="#ffd95a"/>
+              <circle cx="487" cy="76" r="4.5" fill="#2d2a32" stroke="none"/>
+              <circle cx="513" cy="76" r="4.5" fill="#2d2a32" stroke="none"/>
+              <path d="M486 92 Q500 106 514 92" fill="none"/>
+              <circle cx="477" cy="90" r="6" fill="#ff9ebb" stroke="none" opacity=".8"/>
+              <circle cx="523" cy="90" r="6" fill="#ff9ebb" stroke="none" opacity=".8"/>
+            </g>
+
+            <!-- clouds -->
+            <g class="cloud cloud--a" fill="#fff">
+              <path d="M70 110 q-30 0 -30 -22 q0 -22 28 -22 q6 -22 36 -20 q26 2 28 24 q26 2 24 22 q-2 18 -26 18 z"/>
+            </g>
+            <g class="cloud cloud--b" fill="#fff">
+              <path d="M290 60 q-24 0 -24 -17 q0 -17 22 -17 q5 -17 28 -15 q21 2 22 19 q20 2 19 17 q-2 13 -20 13 z"/>
+            </g>
+
+            <!-- seaplane -->
+            <g class="plane">
+              <path d="M160 150 L232 150 Q248 150 250 158 Q246 166 230 166 L160 166 Z" fill="#fff"/>
+              <path d="M160 150 L146 138 L146 158 L160 160 Z" fill="#e8503a"/>
+              <path d="M188 150 L204 132 L222 132 L214 150 Z" fill="#e8503a"/>
+              <rect x="206" y="153" width="12" height="7" rx="2" fill="#7ccbf5" stroke-width="3"/>
+              <path d="M170 178 H238 M182 166 V178 M226 166 V178" fill="none" stroke-width="4"/>
+              <path d="M244 142 L252 160 M248 142 L256 160" fill="none" stroke-width="2.5"/>
+            </g>
+
+            <!-- sea -->
+            <path d="M0 232 Q150 224 300 232 T600 232 V420 H0 Z" fill="#47d0d6"/>
+            <path d="M0 300 Q150 292 300 300 T600 300 V420 H0 Z" fill="#26b3cf"/>
+            <path d="M0 360 Q150 352 300 360 T600 360 V420 H0 Z" fill="#1c95c0"/>
+            <g class="waves" fill="none" stroke="#fff" stroke-width="3" opacity=".75">
+              <path d="M330 262 q8 -6 16 0 t16 0"/><path d="M470 290 q8 -6 16 0 t16 0"/><path d="M60 330 q8 -6 16 0 t16 0"/><path d="M400 242 q8 -6 16 0 t16 0"/>
+            </g>
+
+            <!-- island -->
+            <ellipse cx="170" cy="262" rx="150" ry="28" fill="#8fe6e3" stroke="none" opacity=".75"/>
+            <path d="M40 262 Q60 240 110 240 Q170 232 230 240 Q290 242 300 262 Q250 282 170 284 Q80 284 40 262 Z" fill="#f7e6b5"/>
+            <path d="M80 256 Q110 244 160 244 Q220 240 262 256 Q220 268 160 268 Q108 268 80 256 Z" fill="#8fd17a" stroke-width="3"/>
+            <use href="#palm" x="106" y="258"/>
+            <use href="#palm" x="226" y="256" transform="translate(226 256) scale(-.85 .85) translate(-226 -256)"/>
+            <use href="#palm" x="168" y="250" transform="translate(168 250) scale(.7) translate(-168 -250)"/>
+
+            <!-- beach buggy -->
+            <g class="buggy">
+              <rect x="150" y="266" width="62" height="18" rx="8" fill="#ffc93c"/>
+              <path d="M156 266 V244 H206 V266" fill="none" stroke-width="3.5"/>
+              <path d="M152 244 H210 Q206 236 200 236 H162 Q156 236 152 244 Z" fill="#e8503a" stroke-width="3.5"/>
+              <circle cx="178" cy="257" r="6" fill="#ffdcb8" stroke-width="3"/>
+              <path d="M172 253 Q178 247 184 253" fill="#3b2a20" stroke-width="2"/>
+              <circle cx="195" cy="257" r="5.5" fill="#ffdcb8" stroke-width="3"/>
+              <circle cx="164" cy="285" r="8" fill="#3b3a4a"/><circle cx="164" cy="285" r="3" fill="#cfcfd8" stroke="none"/>
+              <circle cx="202" cy="285" r="8" fill="#3b3a4a"/><circle cx="202" cy="285" r="3" fill="#cfcfd8" stroke="none"/>
+            </g>
+
+            <!-- overwater bungalows -->
+            <path d="M290 270 H500" stroke-width="12" fill="none"/>
+            <path d="M290 270 H500" stroke="#c99a68" stroke-width="5" fill="none"/>
+            <g class="hut">
+              <path d="M340 272 V300 M376 272 V300 M404 272 V300 M440 272 V300" stroke-width="4"/>
+              <rect x="332" y="236" width="52" height="34" fill="#fff6e0"/>
+              <rect x="352" y="248" width="12" height="22" rx="2" fill="#7ccbf5"/>
+              <path d="M322 238 L358 204 L394 238 Z" fill="#d9a35f"/>
+              <path d="M334 232 L358 210 M346 236 L364 218 M358 238 L370 226" fill="none" stroke-width="2" opacity=".5"/>
+              <rect x="406" y="240" width="46" height="30" fill="#fff6e0"/>
+              <rect x="422" y="250" width="12" height="20" rx="2" fill="#7ccbf5"/>
+              <path d="M398 242 L429 212 L460 242 Z" fill="#d9a35f"/>
+            </g>
+
+            <!-- manta ray + fish below the surface -->
+            <g class="manta" opacity=".92">
+              <path d="M300 352 Q262 328 220 334 Q252 346 262 358 Q252 372 222 380 Q268 384 300 366 Q332 384 378 380 Q348 372 338 358 Q348 346 380 334 Q338 328 300 352 Z" fill="#37465f"/>
+              <path d="M300 366 Q298 388 306 402" fill="none"/>
+              <circle cx="288" cy="352" r="3.4" fill="#fff" stroke="none"/><circle cx="312" cy="352" r="3.4" fill="#fff" stroke="none"/>
+              <path d="M278 340 q-6 -10 -2 -16 M322 340 q6 -10 2 -16" fill="none" stroke-width="3.5"/>
+            </g>
+            <g class="fish" stroke-width="3">
+              <path d="M70 372 q14 -12 30 0 q-14 12 -30 0 Z M100 372 l10 -8 v16 Z" fill="#ffc93c"/>
+              <path d="M120 392 q12 -10 26 0 q-12 10 -26 0 Z M146 392 l9 -7 v14 Z" fill="#ff9ebb"/>
+              <path d="M470 366 q14 -12 30 0 q-14 12 -30 0 Z M500 366 l10 -8 v16 Z" fill="#ffc93c"/>
+            </g>
+            <g class="turtle" stroke-width="3.5">
+              <ellipse cx="520" cy="396" rx="22" ry="14" fill="#6fb56a"/>
+              <path d="M508 392 q12 -8 24 0 M508 402 q12 8 24 0" fill="none" stroke-width="2.5" opacity=".6"/>
+              <circle cx="546" cy="396" r="6" fill="#8fd17a"/>
+              <path d="M506 384 l-8 -10 M534 384 l8 -10 M506 408 l-8 10 M534 408 l8 10" fill="none" stroke-width="6"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- FACT STRIP -->
+    <section class="facts" data-i18n-aria="factsAria" aria-label="Quick facts">
+      <ul>
+        <li><span aria-hidden="true">🏝️</span><span data-i18n-html="fact1Html"><strong>~1,200 islands</strong> in 26 atolls</span></li>
+        <li><span aria-hidden="true">🏨</span><span data-i18n-html="fact2Html"><strong>Hotels</strong> on their own islands</span></li>
+        <li><span aria-hidden="true">🪽</span><span data-i18n-html="fact3Html"><strong>Manta &amp; whale sharks</strong> all year</span></li>
+        <li><span aria-hidden="true">🛺</span><span data-i18n-html="fact4Html"><strong>Buggies</strong> and bikes, few cars</span></li>
+      </ul>
+    </section>
+
+    <!-- MAP -->
+    <section class="explore-section" id="explore" aria-labelledby="explore-title">
+      <div class="section-head">
+        <h2 id="explore-title" data-i18n="exploreTitle">Pick a spot on the map!</h2>
+        <div class="chips" role="group" data-i18n-aria="filterAria" aria-label="Show on map">
+          <button class="chip is-active" type="button" data-filter="all" aria-pressed="true" data-i18n="filterAll">🗺️ All</button>
+          <button class="chip" type="button" data-filter="hotel" aria-pressed="false" data-i18n="filterHotel">🏨 Hotels</button>
+          <button class="chip" type="button" data-filter="island" aria-pressed="false" data-i18n="filterIsland">🏝️ Islands</button>
+          <button class="chip" type="button" data-filter="sea" aria-pressed="false" data-i18n="filterSea">🐠 Sea life</button>
+          <button class="chip" type="button" data-filter="go" aria-pressed="false" data-i18n="filterGo">🛩️ Getting around</button>
+        </div>
+      </div>
+
+      <div class="explore">
+        <div class="map-wrap">
+          <div id="map" role="application" data-i18n-aria="mapAria" aria-label="Interactive map of the Maldives: hotels, islands and sea life"></div>
+          <button id="fit" class="map-btn" type="button" data-i18n="resetView">🔭 Reset view</button>
+          <noscript><p class="noscript" data-i18n="noscript">The map needs JavaScript. Try enabling it!</p></noscript>
+        </div>
+        <ul id="list" class="list" data-i18n-aria="listAria" aria-label="Places"></ul>
+      </div>
+      <p class="note" data-i18n="note">Sea-life pins mark a rough area where the animals are often seen, never a promise. Hotels are shown as examples, not endorsements. Seasons, prices and rules change, so check before you go.</p>
+    </section>
+
+    <!-- TIPS -->
+    <section class="tips" id="tips" aria-labelledby="tips-title">
+      <h2 id="tips-title" data-i18n="tipsTitle">Little tips for big adventures</h2>
+      <div class="tips__grid">
+        <article class="tip tip--yellow">
+          <span class="tip__icon" aria-hidden="true">☀️</span>
+          <h3 data-i18n="tip1Title">When to go</h3>
+          <p data-i18n="tip1">The dry season (roughly December to April) brings calm, sunny days. The wetter months (roughly May to November) are better for mantas at Hanifaru and for surf.</p>
+        </article>
+        <article class="tip tip--sky">
+          <span class="tip__icon" aria-hidden="true">🛩️</span>
+          <h3 data-i18n="tip2Title">Getting around</h3>
+          <p data-i18n="tip2">Speedboats, seaplanes, domestic flights and slow dhoni ferries link the islands. On the islands themselves, buggies and bikes beat cars.</p>
+        </article>
+        <article class="tip tip--pink">
+          <span class="tip__icon" aria-hidden="true">🪸</span>
+          <h3 data-i18n="tip3Title">Be kind to the reef</h3>
+          <p data-i18n="tip3">Use reef-safe sunscreen, never touch corals, turtles or sharks, and keep your distance from whale sharks.</p>
+        </article>
+        <article class="tip tip--jade">
+          <span class="tip__icon" aria-hidden="true">🕌</span>
+          <h3 data-i18n="tip4Title">Local islands vs hotels</h3>
+          <p data-i18n="tip4">Hotels are one island each and are the place for alcohol and swimwear. On local islands dress modestly, use the bikini beach, and expect cheaper stays.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p data-i18n-html="footerHtml">Made with 🧡 for curious travellers. Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap</a> contributors.</p>
+  </footer>
+
+  <script src="vendor/leaflet.js"></script>
+  <script src="vendor/leaflet.markercluster.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
