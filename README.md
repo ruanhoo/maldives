@@ -45,4 +45,4 @@ Add an entry to `js/data.js` (`id`, `type`, `emoji`, `district`, `name`, `zh`, `
 - Map data © OpenStreetMap contributors.
 
 ## Teleport
-The living island shares a small `island/teleport.js` with the Xi'an and Vancouver maps: a toolbar button and an in-world portal on the airport island open a city picker, with a swirl transition and an arrival toast. Debug: `?portal=1` (frame the portal), `?portal=open` (open the picker).
+The island loads the shared teleport client from https://ruanhoo.github.io/teleport/ (toolbar button plus a portal on the airport island). The picker and the list of cities live in that site, so nothing here changes when a city is added. Debug: `?portal=1` frames the portal, `?portal=open` opens the picker.
